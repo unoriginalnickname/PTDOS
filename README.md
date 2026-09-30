@@ -49,9 +49,9 @@ python tools/make_v86_app.py      # dist/v86app/ with shareware DOOM from dosgam
 python tools/make_v86_app.py --no-game   # no games, for the installer
 ```
 
-`dist/install-v86-app.js` installs it on every PC, like `install-app.js`. The DOS installer is remade like DOOM's (below), with the app installed from a `--no-game` build and `pt/dos-installer/ptdos.js` and `installer.html` in the module.
+`dist/install-v86-app.js` installs the app on every PC and laptop on the canvas (or those listed in `DEVICES`), and running it again updates them.
 
-To remake the installer: install the app without `[gui]wad.js` and with `dist/app/icon-generic.png` as the icon, then in **Extensions → Scripting → Edit File Script Module** import `pt/installer/ptdoom.js` (Script Engine) and `pt/installer/installer.html` and `play.html` (Custom Interfaces), and under General → Security tick Get Network Info, Change Network Info, Change User Interface, Miscellaneous UI, and Allow opening file even if security privileges are not granted. Save with Packet Tracer's own **File → Save**.
+To remake the installer: build with `--no-game`, run `dist/install-v86-app.js` so the app has no games, then in **Extensions → Scripting → Edit File Script Module** import `pt/dos-installer/ptdos.js` (Script Engine) and `pt/dos-installer/installer.html` and `play.html` (Custom Interfaces), and under General → Security tick Get Network Info, Change Network Info, Change User Interface, Miscellaneous UI, and Allow opening file even if security privileges are not granted. Save with Packet Tracer's own **File → Save** (a save through the bridge loses the script's permissions).
 
 ## Known issues
 
@@ -64,7 +64,7 @@ To remake the installer: install the app without `[gui]wad.js` and with `dist/ap
   - [v86](https://github.com/copy/v86) 0.5.462: BSD-2-Clause, Copyright (c) 2012, The v86 contributors. Full notice in [`licenses/v86.txt`](licenses/v86.txt).
   - [SeaBIOS](https://www.seabios.org/) and its VGA BIOS, as distributed with v86: LGPL-3.0. Source: https://github.com/coreboot/seabios.
   - FreeDOS, from the boot floppy image `freedos722.img` (v86's copy, trimmed): the FreeDOS kernel, the FreeCOM shell (`COMMAND.COM`), ATTRIB, EDIT, HIMEM and XCOPY, all GPL-2.0. Source: [kernel](https://github.com/FDOS/kernel), [FreeCOM](https://github.com/FDOS/freecom), and the other programs' packages at [ibiblio's FreeDOS archive](https://www.ibiblio.org/pub/micro/pc-stuff/freedos/files/). FreeDOS is a trademark of Jim Hall.
-  - Nuked OPL3 (`src/music/opl3.c`, built by `src/v86opl/`): GPL-2.0 or later.
+  - Nuked OPL3 (`src/opl3/opl3.c`, built by `src/v86opl/`): GPL-2.0 or later.
   - From FreeDOS 1.3's packages, loaded from drive C: at boot: CuteMouse 2.1b4 (`CTMOUSE.EXE`, GPL-2.0), DEVLOAD 3.25a (GPL-2.0), UDVD2 (Jack R. Ellis, "free with sources"; changed here, source in `src/udvd2/`) and SHSUCDX 3.09 (John H. McCoy and Jason Hood, freeware). Sources: each package's `SOURCE` folder, and [ctmouse](https://gitlab.com/FreeDOS/base/ctmouse), [devload](https://gitlab.com/FreeDOS/base/devload), [udvd2](https://gitlab.com/FreeDOS/drivers/udvd2), [shsucdx](https://gitlab.com/FreeDOS/base/shsucdx).
   - v86's `libv86.js` is patched at build time (`ATAPI_PATCHES` in `tools/make_v86_app.py`) so the page can answer CD commands first.
 - DOS games: none are included. Each belongs to its publisher.
