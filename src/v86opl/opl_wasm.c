@@ -4,7 +4,7 @@
  * OPL ports and plays them through this. One chip, one output buffer, no
  * Emscripten JavaScript: build with tools/build_opl.py. */
 #include <stdint.h>
-#include "../music/opl3.h"
+#include "../opl3/opl3.h"
 
 #define MAX_FRAMES 8192
 

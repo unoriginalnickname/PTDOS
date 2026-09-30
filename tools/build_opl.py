@@ -1,6 +1,6 @@
 """Build Nuked OPL3 as a standalone wasm module for the DOS app: vendor/opl/opl.wasm.
 
-src/v86opl/opl_wasm.c wraps src/music/opl3.c (the same emulator the native
+src/v86opl/opl_wasm.c wraps src/opl3/opl3.c (the same emulator the native
 DOOM's music uses). tools/make_v86_app.py embeds the result. Needs emsdk; see
 the build notes in NOTES.md.
 """
@@ -22,7 +22,7 @@ def main() -> int:
     cmd = [emcc, "-O3", "--no-entry", "-sSTANDALONE_WASM", "-sFILESYSTEM=0",
            "-sEXPORTED_FUNCTIONS=_opl_reset,_opl_write,_opl_render",
            "-sINITIAL_MEMORY=1MB", "-sSTACK_SIZE=64KB", "-sALLOW_MEMORY_GROWTH=0",
-           str(ROOT / "src" / "v86opl" / "opl_wasm.c"), str(ROOT / "src" / "music" / "opl3.c"),
+           str(ROOT / "src" / "v86opl" / "opl_wasm.c"), str(ROOT / "src" / "opl3" / "opl3.c"),
            "-o", str(OUT)]
     subprocess.run(cmd, check=True)
     print(f"ok: {OUT.relative_to(ROOT)} ({OUT.stat().st_size:,} bytes)")
